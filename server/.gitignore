@@ -41,3 +41,10 @@ secrets.yml
 .sts4-cache
 .git-hooks/
 node_modules
+
+# Properties
+application.properties
+application-dev.properties
+application-prod.properties
+application-test.properties
+env.properties
