@@ -1,0 +1,8 @@
+# Format frontend code using Prettier
+cd ./client
+# npm run format --workspace client
+cd ..
+# Format backend code using Maven (for example)
+cd ./server
+mvn spotless:apply
+git add .

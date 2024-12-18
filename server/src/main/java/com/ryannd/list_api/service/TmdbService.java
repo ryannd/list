@@ -13,8 +13,11 @@ public class TmdbService {
     private final WebClient webClient;
 
     private WebClient.RequestHeadersUriSpec<?> getWithAuth() {
-        return (RequestHeadersUriSpec<?>) webClient.get().header("accept", "application/json").header("Authorization",
-                "Bearer " + apiKey);
+        return (RequestHeadersUriSpec<?>)
+                webClient
+                        .get()
+                        .header("accept", "application/json")
+                        .header("Authorization", "Bearer " + apiKey);
     }
 
     public TmdbService(WebClient.Builder webClientBuilder) {
@@ -22,7 +25,12 @@ public class TmdbService {
     }
 
     public String searchMovies(String query) {
-        return getWithAuth().uri(uriBuilder -> uriBuilder.path("/search/movie").queryParam("query", query).build())
-                .retrieve().bodyToMono(String.class).block();
+        return getWithAuth()
+                .uri(
+                        uriBuilder ->
+                                uriBuilder.path("/search/movie").queryParam("query", query).build())
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
     }
 }
