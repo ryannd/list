@@ -1,6 +1,8 @@
 package com.ryannd.list_api.service;
 
-import com.ryannd.list_api.domain.TmdbSearchResults;
+import com.ryannd.list_api.domain.TmdbSearchResponse;
+import com.ryannd.list_api.domain.TmdbSearchResult;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -25,32 +27,76 @@ public class TmdbService {
         this.webClient = webClientBuilder.baseUrl("https://api.themoviedb.org/3").build();
     }
 
-    public TmdbSearchResults searchMovies(String query) {
+    public TmdbSearchResponse searchMovies(String query) {
         return getWithAuth()
                 .uri(
                         uriBuilder ->
                                 uriBuilder.path("/search/movie").queryParam("query", query).build())
                 .retrieve()
-                .bodyToMono(TmdbSearchResults.class)
+                .bodyToMono(TmdbSearchResponse.class)
+                .map(
+                        response -> {
+                            List<TmdbSearchResult> updated =
+                                    response.results().stream()
+                                            .map(
+                                                    result ->
+                                                            new TmdbSearchResult(
+                                                                    result.backdrop_path(),
+                                                                    result.id(),
+                                                                    result.title(),
+                                                                    result.overview(),
+                                                                    result.poster_path(),
+                                                                    "movie"))
+                                            .toList();
+                            return new TmdbSearchResponse(response.page(), updated);
+                        })
                 .block();
     }
 
-    public TmdbSearchResults searchShows(String query) {
+    public TmdbSearchResponse searchShows(String query) {
         return getWithAuth()
                 .uri(uriBuilder -> uriBuilder.path("/search/tv").queryParam("query", query).build())
                 .retrieve()
-                .bodyToMono(TmdbSearchResults.class)
+                .bodyToMono(TmdbSearchResponse.class)
+                .map(
+                        response -> {
+                            List<TmdbSearchResult> updated =
+                                    response.results().stream()
+                                            .map(
+                                                    result ->
+                                                            new TmdbSearchResult(
+                                                                    result.backdrop_path(),
+                                                                    result.id(),
+                                                                    result.title(),
+                                                                    result.overview(),
+                                                                    result.poster_path(),
+                                                                    "tv"))
+                                            .toList();
+                            return new TmdbSearchResponse(response.page(), updated);
+                        })
                 .block();
     }
 
-    public TmdbSearchResults searchAll(String query) {
+    public TmdbSearchResponse searchAll(String query) {
         // TODO: filter people out
         return getWithAuth()
                 .uri(
                         uriBuilder ->
                                 uriBuilder.path("/search/multi").queryParam("query", query).build())
                 .retrieve()
-                .bodyToMono(TmdbSearchResults.class)
+                .bodyToMono(TmdbSearchResponse.class)
+                .map(
+                        response -> {
+                            List<TmdbSearchResult> updated =
+                                    response.results().stream()
+                                            .filter(
+                                                    result ->
+                                                            result.media_type().equals("movie")
+                                                                    || result.media_type()
+                                                                            .equals("tv"))
+                                            .toList();
+                            return new TmdbSearchResponse(response.page(), updated);
+                        })
                 .block();
     }
 }
