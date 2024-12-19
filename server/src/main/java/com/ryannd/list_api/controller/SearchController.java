@@ -1,5 +1,6 @@
 package com.ryannd.list_api.controller;
 
+import com.ryannd.list_api.domain.TmdbSearchResults;
 import com.ryannd.list_api.service.TmdbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ public class SearchController {
     @Autowired private TmdbService tmdbService;
 
     @GetMapping("/movies")
-    public String searchMovies(@RequestParam String query) {
+    public TmdbSearchResults searchMovies(@RequestParam String query) {
         return tmdbService.searchMovies(query);
     }
 }
