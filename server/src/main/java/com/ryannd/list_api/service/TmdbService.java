@@ -1,7 +1,9 @@
 package com.ryannd.list_api.service;
 
+import com.ryannd.list_api.domain.TmdbMovie;
 import com.ryannd.list_api.domain.TmdbSearchResponse;
 import com.ryannd.list_api.domain.TmdbSearchResult;
+import com.ryannd.list_api.domain.TmdbShow;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -78,7 +80,6 @@ public class TmdbService {
     }
 
     public TmdbSearchResponse searchAll(String query) {
-        // TODO: filter people out
         return getWithAuth()
                 .uri(
                         uriBuilder ->
@@ -97,6 +98,22 @@ public class TmdbService {
                                             .toList();
                             return new TmdbSearchResponse(response.page(), updated);
                         })
+                .block();
+    }
+
+    public TmdbShow getShow(Long id) {
+        return getWithAuth()
+                .uri(uriBuilder -> uriBuilder.path("/tv/" + id).build())
+                .retrieve()
+                .bodyToMono(TmdbShow.class)
+                .block();
+    }
+
+    public TmdbMovie getMovie(Long id) {
+        return getWithAuth()
+                .uri(uriBuilder -> uriBuilder.path("/movie/" + id).build())
+                .retrieve()
+                .bodyToMono(TmdbMovie.class)
                 .block();
     }
 }
