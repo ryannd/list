@@ -1,5 +1,8 @@
 package com.ryannd.list_api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record TmdbMovie(
         Integer id,
         String title,
