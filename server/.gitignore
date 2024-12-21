@@ -48,3 +48,5 @@ application-dev.properties
 application-prod.properties
 application-test.properties
 env.properties
+
+src/main/resources/*.json
