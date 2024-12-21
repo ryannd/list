@@ -50,3 +50,5 @@ application-test.properties
 env.properties
 
 src/main/resources/*.json
+
+.env
