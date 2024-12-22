@@ -25,10 +25,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterAfter(new FirebaseAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(
-                        authorizeRequests -> authorizeRequests
-                                .requestMatchers(
-                                WebConstants.API_BASE_PATH).authenticated()
-                );
+                        authorizeRequests ->
+                                authorizeRequests
+                                        .requestMatchers(WebConstants.API_BASE_PATH)
+                                        .authenticated());
 
         return http.build();
     }

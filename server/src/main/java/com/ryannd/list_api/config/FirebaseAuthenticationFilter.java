@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +17,7 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain)
+            HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         String idToken = request.getHeader(WebConstants.AUTHORIZATION_HEADER);
@@ -31,7 +28,8 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
         }
 
         try {
-            FirebaseToken token = FirebaseAuth.getInstance().verifyIdToken(idToken.replace("Bearer ", ""));
+            FirebaseToken token =
+                    FirebaseAuth.getInstance().verifyIdToken(idToken.replace("Bearer ", ""));
 
             List<GrantedAuthority> authorities = getAuthoritiesFromToken(token);
 
