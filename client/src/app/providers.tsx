@@ -1,16 +1,12 @@
-'use client'
+'use client';
 
-import { ReactNode } from "react"
-import { AuthProvider } from "../features/auth/contexts/AuthProvider"
+import { ReactNode } from 'react';
+import { AuthProvider } from '../features/auth/contexts/AuthProvider';
 
 type ProviderProps = {
-    children: ReactNode
-}
+    children: ReactNode;
+};
 
-export default function Providers ({ children } : ProviderProps) {
-    return (
-        <AuthProvider>
-            {children}
-        </AuthProvider>
-    )
+export default function Providers({ children }: ProviderProps) {
+    return <AuthProvider>{children}</AuthProvider>;
 }

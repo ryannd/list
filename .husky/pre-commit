@@ -1,6 +1,7 @@
 # Format frontend code using Prettier
 cd ./client
-# npm run format --workspace client
+npx lint-staged
+
 cd ..
 # Format backend code using Maven (for example)
 cd ./server
