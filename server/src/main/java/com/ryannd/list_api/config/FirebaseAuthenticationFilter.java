@@ -31,11 +31,17 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
             FirebaseToken token =
                     FirebaseAuth.getInstance().verifyIdToken(idToken.replace("Bearer ", ""));
 
+            String email = token.getEmail();
+            String name = (String) token.getClaims().get("name");
+
             List<GrantedAuthority> authorities = getAuthoritiesFromToken(token);
 
             SecurityContextHolder.getContext()
                     .setAuthentication(
                             new FirebaseAuthenticationToken(idToken, token, authorities));
+
+            request.setAttribute("email", email);
+            request.setAttribute("name", name);
 
             SecurityContextHolder.getContext().getAuthentication().setAuthenticated(true);
 
