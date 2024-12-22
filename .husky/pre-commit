@@ -1,8 +1,8 @@
 # Format frontend code using Prettier
-cd ./client
-npx lint-staged
+npm run lint:frontend
 
 cd ..
+
 # Format backend code using Maven (for example)
 cd ./server
 mvn spotless:apply
