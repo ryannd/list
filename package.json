@@ -9,7 +9,8 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd client && npm run dev",
     "dev:backend": "cd server && mvn spring-boot:run",
-    "lint:frontend": "cd client && npm run lint-frontend"
+    "lint:frontend": "cd client && npm run lint-frontend",
+    "lint:backend": "cd server && mvn spotless:apply"
   },
   "keywords": [],
   "author": "",

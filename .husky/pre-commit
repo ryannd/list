@@ -1,10 +1,5 @@
-# Format frontend code using Prettier
 npm run lint:frontend
 
-# Format backend code using Maven (for example)
-cd ./server
-mvn spotless:apply
-
-cd ..
+npm run lint:backend
 
 git add .
