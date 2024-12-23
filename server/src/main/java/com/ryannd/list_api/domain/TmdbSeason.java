@@ -3,11 +3,10 @@ package com.ryannd.list_api.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record TmdbMovie(
+public record TmdbSeason(
         String id,
-        String title,
-        String release_date,
-        Integer runtime,
+        String name,
+        String overview,
         String poster_path,
-        String backdrop_path,
-        String overview) {}
+        Integer season_number,
+        Integer episode_count) {}

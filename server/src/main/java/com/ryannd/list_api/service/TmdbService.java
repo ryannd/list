@@ -101,7 +101,7 @@ public class TmdbService {
                 .block();
     }
 
-    public TmdbShow getShow(Long id) {
+    public TmdbShow getShow(String id) {
         return getWithAuth()
                 .uri(uriBuilder -> uriBuilder.path("/tv/" + id).build())
                 .retrieve()
@@ -109,7 +109,7 @@ public class TmdbService {
                 .block();
     }
 
-    public TmdbMovie getMovie(Long id) {
+    public TmdbMovie getMovie(String id) {
         return getWithAuth()
                 .uri(uriBuilder -> uriBuilder.path("/movie/" + id).build())
                 .retrieve()

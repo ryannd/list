@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/admin/users")
+@RequestMapping(value = "/api/user")
 public class UserController {
     @Autowired private UserService userService;
 

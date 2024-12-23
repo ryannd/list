@@ -15,12 +15,12 @@ public class DetailsController {
     @Autowired private TmdbService tmdbService;
 
     @GetMapping("/movie/{id}")
-    public TmdbMovie searchMovies(@PathVariable Long id) {
+    public TmdbMovie searchMovies(@PathVariable String id) {
         return tmdbService.getMovie(id);
     }
 
     @GetMapping("/show/{id}")
-    public TmdbShow searchShows(@PathVariable Long id) {
+    public TmdbShow searchShows(@PathVariable String id) {
         return tmdbService.getShow(id);
     }
 }

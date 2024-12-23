@@ -28,7 +28,7 @@ public class FirebaseAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     @Override
-    public Object getPrincipal() {
+    public String getPrincipal() {
         return firebaseToken.getUid();
     }
 }
