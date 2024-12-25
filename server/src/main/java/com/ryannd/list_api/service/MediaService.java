@@ -7,7 +7,6 @@ import com.ryannd.list_api.entity.Season;
 import com.ryannd.list_api.repository.MediaRepository;
 import com.ryannd.list_api.repository.SeasonRepository;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,13 +26,17 @@ public class MediaService {
         return mediaRepository.findAll();
     }
 
+    public Optional<Media> getMedia(String id) {
+        return mediaRepository.findById(id);
+    }
+
     public Media getMedia(String id, String source, String type) {
         Optional<Media> media = mediaRepository.findBySourceId(id, "tmdb");
         if (media.isPresent()) {
             return media.get();
         } else if (type.equals("tv")) {
             TmdbShow show = tmdbService.getShow(id);
-            List<Season> seasons = new ArrayList<>();
+            ArrayList<Season> seasons = new ArrayList<>();
             show.seasons()
                     .forEach(
                             season -> {

@@ -5,6 +5,14 @@ public class MediaRequest {
     private String id;
     private String type;
 
+    public MediaRequest() {}
+
+    public MediaRequest(String source, String id, String type) {
+        this.source = source;
+        this.id = id;
+        this.type = type;
+    }
+
     public String getSource() {
         return this.source;
     }
