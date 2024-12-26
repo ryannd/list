@@ -16,7 +16,7 @@ public class User {
     private String name;
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Entry> entries = new ArrayList<>();
 
     @SuppressWarnings("unused")
