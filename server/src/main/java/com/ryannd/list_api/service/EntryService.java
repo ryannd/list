@@ -51,6 +51,14 @@ public class EntryService {
         return newEntry;
     }
 
+    public Entry getEntry(String entryId) {
+        if (entryRepository.existsById(entryId)) {
+            return entryRepository.findById(entryId).get();
+        } else {
+            throw new RuntimeException("ENTRY NOT FOUND");
+        }
+    }
+
     public Entry updateEntry(EntryDto entry, String entryId) {
         Optional<Entry> entryQuery = entryRepository.findById(entryId);
 
