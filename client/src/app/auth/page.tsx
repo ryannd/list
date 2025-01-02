@@ -1,28 +1,24 @@
 'use client';
 
-import { signInWithGoogle } from '../../lib/firebase/auth';
-import useFirebaseAuth from '../../features/auth/hooks/useAuth';
-import { useEffect, useState } from 'react';
+import useFirebaseAuth from '@/features/auth/hooks/useAuth';
+import AuthForm from '@/features/auth/components/AuthForm';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Auth() {
     const user = useFirebaseAuth();
-    const [id, setId] = useState('');
+    const router = useRouter();
 
     useEffect(() => {
-        user?.getIdToken().then((str) => {
-            setId(str);
+        // go home if authenticated
+        user?.getIdToken().then(() => {
+            router.push('/');
         });
-    }, [user]);
-
-    const handleSignIn = async () => {
-        await signInWithGoogle();
-    };
+    }, [user, router]);
 
     return (
         <>
-            <button onClick={handleSignIn}>Sign in with Google</button>
-            <h1>{user?.email}</h1>
-            <h1>{id}</h1>
+            <AuthForm />
         </>
     );
 }

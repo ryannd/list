@@ -18,6 +18,18 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         return unsubscribe;
     }, []);
 
+    // refresh every 10 mins
+    useEffect(() => {
+        const handle = setInterval(
+            async () => {
+                if (user) await user.getIdToken(true);
+            },
+            10 * 60 * 1000,
+        );
+
+        return () => clearInterval(handle);
+    }, [user]);
+
     return (
         <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
     );
