@@ -15,20 +15,18 @@ export default function AuthForm() {
     };
 
     return (
-        <>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Login</CardTitle>
-                    <CardDescription>
-                        Use one of the options below to login
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Button className="w-full" onClick={handleGoogleSignIn}>
-                        <FaGoogle /> Sign in with Google
-                    </Button>
-                </CardContent>
-            </Card>
-        </>
+        <Card className="w-full lg:w-[800px]">
+            <CardHeader>
+                <CardTitle>Login</CardTitle>
+                <CardDescription>
+                    Use one of the options below to login
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Button className="w-full" onClick={handleGoogleSignIn}>
+                    <FaGoogle /> Sign in with Google
+                </Button>
+            </CardContent>
+        </Card>
     );
 }

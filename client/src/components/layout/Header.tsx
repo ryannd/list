@@ -32,7 +32,7 @@ export default function Header() {
 
     return (
         <>
-            <header>
+            <header className="sticky top-0 bg-black bg-opacity-60 backdrop-blur">
                 <nav className="px-4 py-2.5 lg:px-6">
                     <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
                         <Link href="/">

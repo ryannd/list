@@ -17,8 +17,8 @@ export default function Auth() {
     }, [user, router]);
 
     return (
-        <>
+        <div className="flex h-full w-full flex-col items-center justify-center">
             <AuthForm />
-        </>
+        </div>
     );
 }
