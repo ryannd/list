@@ -1,9 +1,8 @@
 enum Status {
     PLANNING,
     WATCHING,
-    COMPLETED
+    COMPLETED,
 }
-
 
 export type Media = {
     id: string;
@@ -14,7 +13,7 @@ export type Media = {
     poster: string;
     type: string;
     seasons?: Seasons[];
-}
+};
 
 export type Seasons = {
     title: string;
@@ -23,7 +22,7 @@ export type Seasons = {
     seasonNumber: number;
     episodeCount: number;
     sourceMedia: Media;
-}
+};
 
 export type Entry = {
     id: string;
@@ -32,4 +31,11 @@ export type Entry = {
     episodeProgress: number;
     seasonProgress: number;
     rating: number;
-}
+};
+
+export type Watchlist = {
+    planning: Entry[];
+    watching: Entry[];
+    completed: Entry[];
+    all: Entry[];
+};

@@ -32,7 +32,7 @@ public class SecurityConfig {
                         authorizeRequests ->
                                 authorizeRequests
                                         .requestMatchers(WebConstants.API_BASE_PATH)
-                                        .authenticated()); // Secure the API base path
+                                        .authenticated());
 
         return http.build();
     }

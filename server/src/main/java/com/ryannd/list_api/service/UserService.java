@@ -4,6 +4,7 @@ import com.ryannd.list_api.domain.UserList;
 import com.ryannd.list_api.entity.Entry;
 import com.ryannd.list_api.entity.User;
 import com.ryannd.list_api.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.security.core.Authentication;
@@ -44,6 +45,8 @@ public class UserService {
             User user = getCurrentUser();
             UserList list = new UserList();
             List<Entry> entries = user.getEntries();
+
+            list.setAll(new ArrayList<Entry>(entries));
 
             entries.forEach(
                     entry -> {

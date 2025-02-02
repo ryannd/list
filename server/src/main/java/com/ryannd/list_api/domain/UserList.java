@@ -4,6 +4,7 @@ import com.ryannd.list_api.entity.Entry;
 import java.util.ArrayList;
 
 public class UserList {
+    public ArrayList<Entry> all = new ArrayList<Entry>();
     public ArrayList<Entry> planning = new ArrayList<Entry>();
     public ArrayList<Entry> watching = new ArrayList<Entry>();
     public ArrayList<Entry> completed = new ArrayList<Entry>();
@@ -32,5 +33,13 @@ public class UserList {
 
     public void setCompleted(ArrayList<Entry> completed) {
         this.completed = completed;
+    }
+
+    public ArrayList<Entry> getAll() {
+        return this.all;
+    }
+
+    public void setAll(ArrayList<Entry> all) {
+        this.all = all;
     }
 }

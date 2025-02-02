@@ -1,17 +1,17 @@
-"use client"
+'use client';
 
-import { AuthContext } from "@/features/auth/contexts/AuthProvider";
-import { DataTable } from "@/features/list/components/List";
-import useFetchList from "@/features/list/hooks/useFetchList";
-import { Entry } from "@/features/list/types";
-import { useContext } from "react";
+import { DataTable } from '@/features/list/components/DataTable';
+import useFetchList from '@/features/list/hooks/useFetchList';
+import { columns } from '@/features/list/lib/columns';
 
 export default function ListPage() {
     const { data, error } = useFetchList();
-    const context = useContext(AuthContext)
-    console.log(data)
-    console.log(error)
-    return <>
-        {context?.idToken}
-    </>
+
+    if (data && !error) {
+        return (
+            <>
+                <DataTable data={data?.all ?? []} columns={columns} />
+            </>
+        );
+    }
 }
