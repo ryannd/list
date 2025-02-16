@@ -3,7 +3,7 @@ import React, { ReactNode, createContext, useEffect, useState } from 'react';
 import { auth } from '../../../lib/firebase/clientApp';
 import { User } from '@/types';
 
-export type AuthContextState = { user: User, idToken: string | null };
+export type AuthContextState = { user: User; idToken: string | null };
 
 const AuthContext = createContext<AuthContextState | null>(null);
 
@@ -14,7 +14,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
-             if (user) {
+            if (user) {
                 const idToken = await user.getIdToken();
                 setIdToken(idToken);
             } else {
@@ -40,7 +40,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, [user]);
 
     return (
-        <AuthContext.Provider value={{ user, idToken }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ user, idToken }}>
+            {children}
+        </AuthContext.Provider>
     );
 };
 
