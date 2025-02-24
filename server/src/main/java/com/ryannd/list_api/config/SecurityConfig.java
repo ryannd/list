@@ -27,10 +27,14 @@ public class SecurityConfig {
         http.securityMatcher(WebConstants.API_BASE_PATH)
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .addFilterAfter(new FirebaseAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(
+                        new FirebaseAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(
                         authorizeRequests ->
                                 authorizeRequests
+                                        .requestMatchers(
+                                                WebConstants.PUBLIC_ROUTES.toArray(String[]::new))
+                                        .permitAll()
                                         .requestMatchers(WebConstants.API_BASE_PATH)
                                         .authenticated());
 

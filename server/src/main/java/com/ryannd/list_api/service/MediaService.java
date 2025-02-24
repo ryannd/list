@@ -31,7 +31,7 @@ public class MediaService {
     }
 
     public Media getMedia(String id, String source, String type) {
-        Optional<Media> media = mediaRepository.findBySourceId(id, "tmdb");
+        Optional<Media> media = mediaRepository.find(id, "tmdb", type);
         if (media.isPresent()) {
             return media.get();
         } else if (type.equals("tv")) {

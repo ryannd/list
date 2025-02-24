@@ -20,6 +20,11 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
             HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        if (isAllowedRoute(request.getRequestURI())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String idToken = request.getHeader(WebConstants.AUTHORIZATION_HEADER);
 
         if (idToken == null || idToken.isEmpty()) {
@@ -64,5 +69,11 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
             authorities = AuthorityUtils.createAuthorityList(permissions);
         }
         return authorities;
+    }
+
+    private boolean isAllowedRoute(String requestUri) {
+        // Check if the request URI matches any of the allowed routes
+        return WebConstants.PUBLIC_ROUTES.stream()
+                .anyMatch(route -> requestUri.startsWith(route.replace("/**", "")));
     }
 }
