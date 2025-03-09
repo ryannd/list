@@ -1,5 +1,6 @@
 package com.ryannd.list_api.service;
 
+import com.ryannd.list_api.config.WebConstants;
 import com.ryannd.list_api.domain.TmdbMovie;
 import com.ryannd.list_api.domain.TmdbShow;
 import com.ryannd.list_api.entity.Media;
@@ -57,7 +58,8 @@ public class MediaService {
                             show.id(),
                             "tmdb",
                             show.overview(),
-                            show.poster_path(),
+                            WebConstants.TMDB_IMG_BASE_PATH + show.poster_path(),
+                            WebConstants.TMDB_IMG_BASE_PATH + show.backdrop_path(),
                             "tv",
                             seasons);
             mediaRepository.save(newShow);
@@ -71,7 +73,8 @@ public class MediaService {
                             movie.id(),
                             "tmdb",
                             movie.overview(),
-                            movie.poster_path(),
+                            WebConstants.TMDB_IMG_BASE_PATH + movie.poster_path(),
+                            WebConstants.TMDB_IMG_BASE_PATH + movie.backdrop_path(),
                             "movie");
             mediaRepository.save(newMovie);
             return newMovie;

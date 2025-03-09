@@ -9,6 +9,7 @@ export type Media = {
     sourceId: string;
     description: string;
     poster: string;
+    background: string;
     type: string;
     seasons: Seasons[];
 };

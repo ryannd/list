@@ -22,6 +22,8 @@ public class Media {
     private String description;
 
     private String poster;
+    private String background;
+
     private String type;
 
     @OneToMany() private List<Season> seasons = new ArrayList<>();
@@ -35,6 +37,7 @@ public class Media {
             String source,
             String description,
             String poster,
+            String background,
             String type) {
         this.title = title;
         this.source = source;
@@ -42,6 +45,7 @@ public class Media {
         this.description = description;
         this.poster = poster;
         this.type = type;
+        this.background = background;
     }
 
     public Media(
@@ -50,6 +54,7 @@ public class Media {
             String source,
             String description,
             String poster,
+            String background,
             String type,
             List<Season> seasons) {
         this.title = title;
@@ -58,6 +63,7 @@ public class Media {
         this.description = description;
         this.poster = poster;
         this.type = type;
+        this.background = background;
         this.seasons = seasons;
     }
 
@@ -123,5 +129,13 @@ public class Media {
 
     public void setSeasons(List<Season> seasons) {
         this.seasons = seasons;
+    }
+
+    public String getBackground() {
+        return this.background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 }
