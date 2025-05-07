@@ -22,6 +22,13 @@ export default async function Detail({ params }: { params: Promise<Params> }) {
                 backgroundPosition: 'center',
             }}
             className="max-w-screen h-[50vh] w-screen md:h-[75vh] md:max-h-[75vh]"
-        ></div>
+        >
+            <div className='h-full relative'>
+                <div className='bottom-0 absolute'>
+                    <h1>{data.title}</h1>
+                    <p>{data.description}</p>
+                </div>
+            </div>
+        </div>
     );
 }

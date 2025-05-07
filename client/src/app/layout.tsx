@@ -24,8 +24,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <Providers>
-            <div className="w-full">{children}</div>
-        </Providers>
+        <html lang="en" suppressHydrationWarning>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
+                {children}
+            </body>
+        </html>
     );
 }
